@@ -32,6 +32,15 @@ class Province {
             }
         }
     }
+
+    findRegenciesByName(name) {
+        for(let reg of this.regencies) {
+            if(reg.name == name) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 class Regency {
@@ -95,6 +104,10 @@ class Location {
     findProvinceByRegencyName(name) {
         // input : jakarta
         // output : DKI Jakarta
+        for(let prov of this.provinceList) {
+                   
+        }
+
     }
 
     findRegencyWithSizeWords(length) {
