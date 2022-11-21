@@ -4383,7 +4383,7 @@ class Regency {
     }    
 }
 
-class Provinces {
+class Location {
     provinceList = []
     regencyList = []
 
@@ -4409,7 +4409,36 @@ class Provinces {
     }
 
     getProvinceByID(id) {
-            
+        // Print Province Name and List of 
+        // Regencies based on Province ID
+        // ACEH 
+        // - Kab X
+        // - Kab Y
+        // cari province object berdasarkan id
+        province.provinceName()
+        province.regencies()
+    }
+
+    findProvinceByRegencyID(id) {
+        // input : ID Regency
+        // output : Province Name 
+    }
+
+    findProvinceByRegencyName(name) {
+        // input : jakarta
+        // output : DKI Jakarta
+    }
+
+    findRegencyWithSizeWords(length) {
+        // input : 3
+        // output : list of Regency with length of words is equal 3
+        // KABUPATEN ACEH SINGKIL
+        // - KABUPATEN ACEH SELATAN
+        // - KABUPATEN ACEH TENGGARA
+        // - KABUPATEN ACEH TIMUR
+        // - KABUPATEN ACEH TENGAH
+        // - KABUPATEN ACEH BARAT
+        // - KABUPATEN ACEH BESAR
     }
 
 }

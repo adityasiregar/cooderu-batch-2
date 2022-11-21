@@ -55,10 +55,12 @@ class Regency {
 }
 
 class Location {
-    provinceList = []
+    provinceList = {}
+    regencyList = {}
 
     constructor() {
         this.loadProvince()
+        this.loadRegencies()
     }
 
     loadProvince() {
@@ -70,7 +72,22 @@ class Location {
                 province.latitude,
                 province.longitude
             )   
-            this.provinceList.push(newProvince)
+            this.provinceList[province.id] = newProvince
+        }
+    }
+
+    loadRegencies() {
+        for (let regency of regencies) {
+            let newRegency = new Regency(
+                regency.id,
+                regency.name,
+                regency.alt_name,
+                regency.latitude,
+                regency.longitude,
+                this.provinceList[regency.province_id],
+            )   
+
+            this.regencyList[regency.id] = newRegency
         }
     }
 
@@ -86,19 +103,17 @@ class Location {
     }
 
     getProvinceByID(id) {
-        // Print Province Name and List of 
-        // Regencies based on Province ID
-        // ACEH 
-        // - Kab X
-        // - Kab Y
-        // cari province object berdasarkan id
-        province.provinceName()
-        province.regencies()
+        console.log(this.provinceList[id].regencies)
     }
 
     findProvinceByRegencyID(id) {
         // input : ID Regency
         // output : Province Name 
+        return this.regencyList[id].province.name
+    }
+
+    findProvinceNameByRegencyID(id) {
+        return this.regencyList[id].province.name
     }
 
     findProvinceByRegencyName(name) {
@@ -126,4 +141,6 @@ class Location {
 
 let location = new Location()  
 
-location.findRegenciesByProvinceName("DKI JAKARTA")
+console.log(location.findProvinceNameByRegencyID("1102"))
+
+location.getProvinceByID("16")
