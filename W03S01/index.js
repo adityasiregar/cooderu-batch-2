@@ -91,3 +91,10 @@ app.listen(3000);
 // 200 success
 // 4xx Bad Request, kesalahan user/ client
 // 5xx Server Error, terkait kesalahan dalam server
+
+// Assignment
+// CRUD API Province
+// CRUD API Regency
+// Get API Regency by Province ID
+// Get API Regency By Province Name
+// Get API Province Name by Regency Name
