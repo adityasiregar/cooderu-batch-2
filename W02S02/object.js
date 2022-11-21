@@ -6,6 +6,8 @@ class Person {
         this.address = address
         this.isMaried = isMaried 
     }   
+    
+    
 }
 
 let person1 = new Person("Fulan", "Jl Melati", false)

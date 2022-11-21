@@ -12,7 +12,7 @@ class Human {
     }
 
     work() {
-        console.log("Yes I am working")
+      console.log("Yes I am working")
     }
   
 }

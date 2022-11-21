@@ -1,8 +1,8 @@
 
 // isValid = false
 // while(!isValid) {
-//     randomString = generateRandomstring()
-//     isValid = checkInDB(randomString)
+//     randomString = generateRandomstring() AF0003
+//     isValid = checkInDB(randomString)  true
 // }
 
 let i=1;

@@ -4384,8 +4384,7 @@ class Regency {
 }
 
 class Location {
-    provinceList = []
-    regencyList = []
+    provinceList = {}
 
     constructor() {
         this.loadProvince()
@@ -4401,11 +4400,21 @@ class Location {
                 province.latitude,
                 province.longitude
             )   
-            provinceList.push(newProvince)
+            provinceList[province.id] = newProvince
         }
     }
 
     loadRegencies() {
+        for (let regency of regencies) {
+            let newRegency = new Regency(
+                newRegency.id,
+                newRegency.,
+                province.alt_name,
+                province.latitude,
+                province.longitude
+            )   
+            provinceList[province.id] = newProvince
+        }
     }
 
     getProvinceByID(id) {

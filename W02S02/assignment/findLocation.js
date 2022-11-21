@@ -141,6 +141,8 @@ class Location {
 
 let location = new Location()  
 
-console.log(location.findProvinceNameByRegencyID("1102"))
+// console.log(location.findProvinceNameByRegencyID("1102"))
 
-location.getProvinceByID("16")
+// location.getProvinceByID("16")
+
+console.log(location.provinceList["11"])
