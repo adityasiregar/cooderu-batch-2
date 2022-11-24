@@ -23,6 +23,8 @@ app.get('/province', (req, res) => {
         let dataJson = JSON.parse(data)
         res.status(200).send(dataJson)
     });
+
+    return res.status(500).send("Error")
 })
 
 // get by params
