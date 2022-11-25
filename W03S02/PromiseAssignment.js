@@ -19,8 +19,8 @@ async function kucek() {
 async function bilas() {
     return new Promise((resolve, reject) => {
         setTimeout(function() {
-        console.log("Sedang bilas. Setelah ini jemur")
-        resolve()
+            console.log("Sedang bilas. Setelah ini jemur")
+            resolve()
         }, 1000);
     })
 }
@@ -50,8 +50,9 @@ async function setrika() {
 //     then(kucek).
 //     then(bilas).
 //     then(jemur). 
-//     then(setrika)
-
+//     then(setrika).catch(e=> {
+//         console.log("hello", e)
+//     })
 
 async function nyuci() {
     rendam()
@@ -63,7 +64,11 @@ async function nyuci() {
 
 nyuci()
 
- // Sedang bilas. Setelah ini jemur
+
+// sendEmail() // 2menit
+// sendNotifToAPP() //3menit
+
+// Sedang bilas. Setelah ini jemur
  // Sedang kucek. Setelah ini bilas
  // Mulai rendam. Setelah ini kucek
  // Sedang setrika. Setelah ini selesai
