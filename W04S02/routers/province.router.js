@@ -1,12 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
+const Province = require('../controllers/province.contoller')
 
-const { getAllProvince, getProvinceByID, createProvince} = require('../controllers/province.contoller')
-
-router.get('/', getAllProvince)
-
-router.get('/:id', getProvinceByID);
-  
-router.post('/', createProvince);
+router.post('/', Province.create)
+router.put('/:id', Province.update)
+router.delete('/:id', Province.delete)
+router.get('/:id', Province.getById)
+router.get('/', Province.getAll)
 
 module.exports = router
