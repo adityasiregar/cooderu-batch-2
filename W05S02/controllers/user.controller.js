@@ -1,5 +1,6 @@
 const { User } = require('../models')
 const bcrypt = require('bcrypt');
+const { generateToken } = require('../middlewares/auth')
 
 const register = async (req, res) => {
     const body = req.body;
@@ -39,8 +40,22 @@ const login = async (req, res) => {
             const match = await bcrypt.compare(body.password, user.password);
 
             if(match) {
+                let token = generateToken({
+                    id: user.id,
+                    username : user.username,
+                    email: user.email,
+                    full_name: user.full_name,
+                })
+
                 return res.status(200).json({
-                    message: "Yess Login",
+                    message: "Success",
+                    data : {
+                        id: user.id,
+                        username: user.username,
+                        email:user.email,
+                        full_name: user.full_name,
+                        token: token
+                    }
                 });
             }
 
@@ -48,6 +63,7 @@ const login = async (req, res) => {
                 message: "User and Password is Not Match",
             });
         }).catch(e => {
+            console.log(e)
             res.status(500).json({
                 message: "Internal Server Error",
             });
