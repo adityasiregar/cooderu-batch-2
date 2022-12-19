@@ -1,19 +1,51 @@
-const fs = require('fs')
-const db = require("../config/db");
 const { User } = require('../models')
+const bcrypt = require('bcrypt');
 
-const createUser = async (req, res) => {
+const register = async (req, res) => {
     const body = req.body;
 
-    User.create({
-        username: body.username,
-        password: body.password,
+    bcrypt.hash(body.password, 10, function(err, hash) {
+        User.create({
+            full_name: body.full_name,
+            username: body.username,
+            email: body.email,
+            password: hash
+        }).then(user => {
+                res.status(200).json({
+                    message: "User created",
+                    data: user,
+                });
+            }).catch(e => {
+                res.status(500).json({
+                    message: "Internal Server Error",
+                });
+            })
+    });
+};
+
+const login = async (req, res) => {
+    const body = req.body;
+
+    User.findOne({where : {
         email: body.email
-    })
-        .then(user => {
-            res.status(200).json({
-                message: "User created",
-                data: user,
+    }})
+        .then(async user => {
+            if (!user) {
+                return res.status(400).json({
+                    message: "User Not Found",
+                });
+            }
+
+            const match = await bcrypt.compare(body.password, user.password);
+
+            if(match) {
+                return res.status(200).json({
+                    message: "Yess Login",
+                });
+            }
+
+            return res.status(400).json({
+                message: "User and Password is Not Match",
             });
         }).catch(e => {
             res.status(500).json({
@@ -21,72 +53,8 @@ const createUser = async (req, res) => {
             });
         })
 };
-
-const getAllUser = async (req, res) => {
-
-    User.findAll({})
-        .then(users => {
-            res.status(200).json({
-                message: "User created",
-                data: users,
-            });
-        }).catch(e => {
-            res.status(500).json({
-                message: "Internal Server Error",
-            });
-        })
-};
-
-const updateUser = async (req, res) => {
-    const body = req.body
-    const id = req.params.id
-
-    console.log(body)
-    console.log(id)
-
-    User.update({
-        username: body.username,
-        email: body.email,
-        password: body.password
-    }, {
-        where : {
-            id : id
-        }
-    })
-        .then(() => {
-            res.status(200).json({
-                message: "Data Updated",
-            });
-        }).catch(e => {
-            res.status(500).json({
-                message: "Internal Server Error",
-            });
-        })
-};
-
-const deleteUser = async (req, res) => {
-    const id = req.params.id
-
-    User.destroy({
-        where : {
-            id : id
-        }
-    })
-        .then(() => {
-            res.status(200).json({
-                message: "Data Deleted",
-            });
-        }).catch(e => {
-            res.status(500).json({
-                message: "Internal Server Error",
-            });
-        })
-};
-
 
 module.exports = {
-    createUser,
-    getAllUser,
-    updateUser,
-    deleteUser
+    register,
+    login
 }
