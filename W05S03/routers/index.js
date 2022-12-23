@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const user = require('./user.router')
-const photo = require('./photo.router')
+const todo = require('./todo.router')
 
-router.use('/user', user)
-router.use('/photo', photo)
+router.use('/todo', todo)
 
 module.exports = router
